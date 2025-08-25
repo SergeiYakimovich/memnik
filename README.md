@@ -1,4 +1,5 @@
 # Memnik
+## Application for saving and sharing mems, jokes, postcards, quotes and short videos
 
 [![Deploy prod buy runner](https://github.com/SergeiYakimovich/memnik/actions/workflows/deploy-prod.yml/badge.svg)](https://github.com/SergeiYakimovich/memnik/actions/workflows/deploy-prod.yml)
 
