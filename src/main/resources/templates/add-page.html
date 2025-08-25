@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Memnik</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous"/>
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
+</head>
+<body>
+<div>
+    <label>&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+    <a class="btn" href="/">Main</a>
+    <a class="btn" href="/contacts">Contacts</a>
+    <label>&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+
+    <a class="btn" href="/tag">Tags</a>
+    <div class="dropdown">
+        <div class="dropdown-btn">Mem</div>
+        <div class="dropdown-content">
+            <a href="/mem/find">Find mem</a>
+            <a href="/mem/add">Add mem</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <div class="dropdown-btn">Joke</div>
+        <div class="dropdown-content">
+            <a href="/joke/find">Find joke</a>
+            <a href="/joke/add">Add joke</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <div class="dropdown-btn">Postcard</div>
+        <div class="dropdown-content">
+            <a href="/postcard/find">Find postcard</a>
+            <a href="/postcard/add">Add postcard</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <div class="dropdown-btn">Quote</div>
+        <div class="dropdown-content">
+            <a href="/quote/find">Find quote</a>
+            <a href="/quote/add">Add quote</a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <div class="dropdown-btn">Video</div>
+        <div class="dropdown-content">
+            <a href="/video/find">Find video</a>
+            <a href="/video/add">Add video</a>
+        </div>
+    </div>
+
+</div>
+<h1>
+    <label>&nbsp</label>
+    <span th:text="${title}"></span>
+</h1>
+
+<div th:if="${error != null}">
+    <p style="color: red; margin-left: 20px" th:text="${error}"></p>
+</div>
+
+<form method="post" enctype="multipart/form-data">
+    <h4>&nbsp&nbspChoose language and tags</h4>
+    <div>
+        <label>&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+        <select name="language" id="language" size="1">
+            <option value="ANY">Any language</option>
+            <option value="EN">English</option>
+            <option value="RU">Russian</option>
+        </select>
+        <label>Language</label>
+    </div>
+    <div>
+        <label>&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+        <select name="tags" id="tags" size="3" multiple>
+            <p th:each="item: ${tags}">
+                <option th:value="${item}" th:text="${item}"></option>
+            </p>
+        </select>
+        <label>Tags</label>
+    </div>
+    <h4>&nbsp&nbsp</h4>
+    <div th:if="${type.equals('picture') || type.equals('video')}">
+        <h4>&nbsp&nbspChoose file with image</h4>
+        <label>&nbsp&nbsp&nbsp&nbsp</label>
+        <input type="file" name="image" accept="storage/*"/>
+    </div>
+    <div th:if="${type.equals('text')}">
+        <h4>&nbsp&nbspAdd text</h4>
+        <label>&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+        <textarea name="text" id="text" cols="100" rows="10"></textarea>
+    </div>
+    <div>
+        <label>&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+        <input class="btn" type="submit" value="Submit" />
+    </div>
+</form>
+</body>
+</html>

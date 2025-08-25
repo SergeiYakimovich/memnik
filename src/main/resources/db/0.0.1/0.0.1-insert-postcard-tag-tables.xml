@@ -1,0 +1,40 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="1" author="yakimovich_sv">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="postcards"/>
+        </preConditions>
+        <insert tableName="postcards">
+            <column name="author" value="admin"/>
+            <column name="information" value="birthday_0.jpeg" />
+            <column name="created_at" value="now()"/>
+            <column name="used" value="false"/>
+            <column name="language" value="RU"/>
+        </insert>
+        <insert tableName="postcards">
+            <column name="author" value="admin"/>
+            <column name="information" value="cristmas_1.jpg" />
+            <column name="created_at" value="now()"/>
+            <column name="used" value="false"/>
+            <column name="language" value="RU"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="2" author="yakimovich_sv">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="postcards_tags"/>
+        </preConditions>
+        <insert tableName="postcards_tags">
+            <column name="tag_id" value="5" />
+            <column name="postcard_id" value="1" />
+        </insert>
+        <insert tableName="postcards_tags">
+            <column name="tag_id" value="6" />
+            <column name="postcard_id" value="2" />
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

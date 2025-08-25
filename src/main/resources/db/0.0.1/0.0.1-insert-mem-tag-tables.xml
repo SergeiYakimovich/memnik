@@ -1,0 +1,66 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="1" author="yakimovich_sv">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="mems"/>
+        </preConditions>
+        <insert tableName="mems">
+            <column name="author" value="admin"/>
+            <column name="information" value="alco_0.jpeg" />
+            <column name="created_at" value="now()"/>
+            <column name="used" value="false"/>
+            <column name="language" value="RU"/>
+        </insert>
+        <insert tableName="mems">
+            <column name="author" value="admin"/>
+            <column name="information" value="alco_1.jpeg" />
+            <column name="created_at" value="now()"/>
+            <column name="used" value="false"/>
+            <column name="language" value="RU"/>
+        </insert>
+        <insert tableName="mems">
+            <column name="author" value="admin"/>
+            <column name="information" value="money_2.jpeg" />
+            <column name="created_at" value="now()"/>
+            <column name="used" value="false"/>
+            <column name="language" value="RU"/>
+        </insert>
+        <insert tableName="mems">
+            <column name="author" value="admin"/>
+            <column name="information" value="work_3.jpeg" />
+            <column name="created_at" value="now()"/>
+            <column name="used" value="false"/>
+            <column name="language" value="RU"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="2" author="yakimovich_sv">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="mems_tags"/>
+        </preConditions>
+        <insert tableName="mems_tags">
+            <column name="tag_id" value="1" />
+            <column name="mem_id" value="1" />
+        </insert>
+        <insert tableName="mems_tags">
+            <column name="tag_id" value="1" />
+            <column name="mem_id" value="2" />
+        </insert>
+        <insert tableName="mems_tags">
+            <column name="tag_id" value="2" />
+            <column name="mem_id" value="3" />
+        </insert>
+        <insert tableName="mems_tags">
+            <column name="tag_id" value="3" />
+            <column name="mem_id" value="4" />
+        </insert>
+        <insert tableName="mems_tags">
+            <column name="tag_id" value="4" />
+            <column name="mem_id" value="4" />
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

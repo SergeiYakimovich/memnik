@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Memnik</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous"/>
+  <link th:href="@{/css/styles.css}" rel="stylesheet">
+</head>
+<body>
+<div>
+  <label>&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+  <a class="btn" href="/">Main</a>
+  <a class="btn" href="/contacts">Contacts</a>
+  <label>&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+
+  <a class="btn" href="/tag">Tags</a>
+  <div class="dropdown">
+    <div class="dropdown-btn">Mem</div>
+    <div class="dropdown-content">
+      <a href="/mem/find">Find mem</a>
+      <a href="/mem/add">Add mem</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <div class="dropdown-btn">Joke</div>
+    <div class="dropdown-content">
+      <a href="/joke/find">Find joke</a>
+      <a href="/joke/add">Add joke</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <div class="dropdown-btn">Postcard</div>
+    <div class="dropdown-content">
+      <a href="/postcard/find">Find postcard</a>
+      <a href="/postcard/add">Add postcard</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <div class="dropdown-btn">Quote</div>
+    <div class="dropdown-content">
+      <a href="/quote/find">Find quote</a>
+      <a href="/quote/add">Add quote</a>
+    </div>
+  </div>
+  <div class="dropdown">
+    <div class="dropdown-btn">Video</div>
+    <div class="dropdown-content">
+      <a href="/video/find">Find video</a>
+      <a href="/video/add">Add video</a>
+    </div>
+  </div>
+</div>
+
+<div>
+  <table border="1" style="margin-left: 20px" >
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Language</th>
+      <th>Email</th>
+      <th>Last Login</th>
+    </tr>
+    <tr th:each ="user : ${users}">
+      <td th:utext="${user.id}">...</td>
+      <td th:utext="${user.name}">...</td>
+      <td th:utext="${user.language}">...</td>
+      <td th:utext="${user.email}">...</td>
+      <td th:utext="${user.lastLogin}">...</td>
+    </tr>
+  </table>
+</div>
+
+<div th:if="${error != null}">
+  <label>&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+  <p style="color: red; margin-left: 20px" th:text="${error}"></p>
+</div>
+
+<form method="post" action="/admin/deleteUser">
+  <div class="inline-container">
+    <label style="margin-left: 20px" for="userId">Delete user</label>
+    <input style="margin-left: 20px" type="text" id="userId" name="userId" required autofocus/>
+    <label style="margin-left: 20px" for="userId">User ID</label>
+    <label>&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+    <button class="btn" type="submit">Submit</button>
+  </div>
+</form>
+
+<form method="post" action="/admin/deleteTag">
+  <div class="inline-container">
+    <label style="margin-left: 20px" for="tagId">Delete tag</label>
+    <input style="margin-left: 20px" type="text" id="tagId" name="tagId" required autofocus/>
+    <label style="margin-left: 20px" for="tagId">Tag ID</label>
+    <label>&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+    <button class="btn" type="submit">Submit</button>
+  </div>
+</form>
+
+<form method="post" action="/admin/deleteMem">
+  <div class="inline-container">
+    <label style="margin-left: 20px" for="memId">Delete mem</label>
+    <input style="margin-left: 20px" type="text" id="memId" name="memId" required autofocus/>
+    <label style="margin-left: 20px" for="memId">Mem ID</label>
+    <label>&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+    <button class="btn" type="submit">Submit</button>
+  </div>
+</form>
+
+<form method="post" action="/admin/deleteJoke">
+  <div class="inline-container">
+    <label style="margin-left: 20px" for="jokeId">Delete joke</label>
+    <input style="margin-left: 20px" type="text" id="jokeId" name="jokeId" required autofocus/>
+    <label style="margin-left: 20px" for="jokeId">Joke ID</label>
+    <label>&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+    <button class="btn" type="submit">Submit</button>
+  </div>
+</form>
+
+<form method="post" action="/admin/deletePostcard">
+  <div class="inline-container">
+    <label style="margin-left: 20px" for="postcardId">Delete postcard</label>
+    <input style="margin-left: 20px" type="text" id="postcardId" name="postcardId" required autofocus/>
+    <label style="margin-left: 20px" for="postcardId">Postcard ID</label>
+    <label>&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+    <button class="btn" type="submit">Submit</button>
+  </div>
+</form>
+
+<form method="post" action="/admin/deleteQuote">
+  <div class="inline-container">
+    <label style="margin-left: 20px" for="quoteId">Delete quote</label>
+    <input style="margin-left: 20px" type="text" id="quoteId" name="quoteId" required autofocus/>
+    <label style="margin-left: 20px" for="quoteId">Quote ID</label>
+    <label>&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+    <button class="btn" type="submit">Submit</button>
+  </div>
+</form>
+
+<form method="post" action="/admin/deleteVideo">
+  <div class="inline-container">
+    <label style="margin-left: 20px" for="videoId">Delete video</label>
+    <input style="margin-left: 20px" type="text" id="videoId" name="videoId" required autofocus/>
+    <label style="margin-left: 20px" for="videoId">Video ID</label>
+    <label>&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+    <button class="btn" type="submit">Submit</button>
+  </div>
+</form>
+
+</body>
+</html>

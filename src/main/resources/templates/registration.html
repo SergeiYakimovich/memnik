@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Please sign in</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous"/>
+  <link th:href="@{/css/styles.css}" rel="stylesheet">
+  <title>Memnik</title>
+
+  <div>
+    <label>&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+    <a class="btn" href="/">Main</a>
+    <a class="btn" href="/contacts">Contacts</a>
+    <label>&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+
+    <a class="btn" href="/tag">Tags</a>
+    <div class="dropdown">
+      <div class="dropdown-btn">Mem</div>
+      <div class="dropdown-content">
+        <a href="/mem/find">Find mem</a>
+        <a href="/mem/add">Add mem</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <div class="dropdown-btn">Joke</div>
+      <div class="dropdown-content">
+        <a href="/joke/find">Find joke</a>
+        <a href="/joke/add">Add joke</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <div class="dropdown-btn">Postcard</div>
+      <div class="dropdown-content">
+        <a href="/postcard/find">Find postcard</a>
+        <a href="/postcard/add">Add postcard</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <div class="dropdown-btn">Quote</div>
+      <div class="dropdown-content">
+        <a href="/quote/find">Find quote</a>
+        <a href="/quote/add">Add quote</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <div class="dropdown-btn">Video</div>
+      <div class="dropdown-content">
+        <a href="/video/find">Find video</a>
+        <a href="/video/add">Add video</a>
+      </div>
+    </div>
+    <label>&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+
+    <a class="btn" href="/registration">Registration</a>
+    <a class="btn" href="/login">Login</a>
+
+  </div>
+</head>
+<body>
+<div class="container">
+  <p style="color: red; display: flex; align-items: center; justify-content: center;" th:text="${error}"></p>
+
+  <form class="form-signin" method="post" th:object="${user}">
+    <h2 class="form-signin-heading">Please register</h2>
+    <p>
+      <label class="sr-only">Name</label>
+      <input type="text" id="name" th:field="*{name}" class="form-control" placeholder="Username" required autofocus/>
+    </p>
+    <p>
+      <label class="sr-only">Name</label>
+      <input type="email" id="email" th:field="*{email}" class="form-control" placeholder="Email" required autofocus/>
+    </p>
+    <p>
+      <label class="sr-only">Password</label>
+      <input type="password" id="password" th:field="*{password}" class="form-control" placeholder="Enter Password" required/>
+    </p>
+    <p>
+      <label class="sr-only">Confirm password</label>
+      <input type="password" id="passwordConfirm" th:field="*{passwordConfirm}" class="form-control" placeholder="Confirm Password" required/>
+    </p>
+    <p>
+      <label class="sr-only">Language</label>
+      <select name="language" id="language" th:field="*{language}" size="1" class="form-control" required>
+        <option value="ANY">Any language</option>
+        <option value="EN">English</option>
+        <option value="RU">Russian</option>
+      </select>
+    </p>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+  </form>
+</div>
+</body>
+</html>

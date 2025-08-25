@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <preConditions onFailMessage="You are not running on a supported dbms: postgresql">
+        <or>
+            <dbms type="postgresql"/>
+        </or>
+    </preConditions>
+
+    <include file="0.0.1/0.0.1-create-security-tables.xml" relativeToChangelogFile="true"/>
+    <include file="0.0.1/0.0.1-create-shedlock-tables.xml" relativeToChangelogFile="true"/>
+
+    <include file="0.0.1/0.0.1-create-tag-table.xml" relativeToChangelogFile="true"/>
+    <include file="0.0.1/0.0.1-insert-tag-table.xml" relativeToChangelogFile="true"/>
+
+    <include file="0.0.1/0.0.1-create-mem-tag-tables.xml" relativeToChangelogFile="true"/>
+    <include file="0.0.1/0.0.1-insert-mem-tag-tables.xml" relativeToChangelogFile="true"/>
+
+    <include file="0.0.1/0.0.1-create-joke-tag-tables.xml" relativeToChangelogFile="true"/>
+    <include file="0.0.1/0.0.1-insert-joke-tag-tables.xml" relativeToChangelogFile="true"/>
+
+    <include file="0.0.1/0.0.1-create-postcard-tag-tables.xml" relativeToChangelogFile="true"/>
+    <include file="0.0.1/0.0.1-insert-postcard-tag-tables.xml" relativeToChangelogFile="true"/>
+
+    <include file="0.0.1/0.0.1-create-quote-tag-tables.xml" relativeToChangelogFile="true"/>
+    <include file="0.0.1/0.0.1-insert-quote-tag-tables.xml" relativeToChangelogFile="true"/>
+
+    <include file="0.0.1/0.0.1-create-video-tag-tables.xml" relativeToChangelogFile="true"/>
+
+</databaseChangeLog>

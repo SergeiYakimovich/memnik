@@ -1,0 +1,58 @@
+version: '3.8'
+services:
+  client-backend:
+    image: memnik:0.0.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8181:8181"
+    depends_on:
+      service-db:
+        condition: service_healthy
+    environment:
+      - MEMNIK_SERVER_PORT= 8181
+      - MEMNIK_APPLICATION_URL=109.172.114.118:8181
+      - MEMNIK_DB_URL= jdbc:postgresql://localhost:15432/memnik?currentSchema=memnik
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://service-db/memnik?currentSchema=memnik
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+#      - MEMNIK_TGBOT_TOKEN=
+#      - MEMNIK_TGBOT_URL=
+    volumes:
+      - storage:/usr/app/storage
+
+  service-db:
+    image: postgres:14.7-alpine
+    container_name: service-db
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-d", "books_db"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+    ports:
+      - "15432:5432"
+    volumes:
+      - ./src/main/resources/db/init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
+      - db:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin4_container
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    restart: unless-stopped
+
+volumes:
+  storage:
+  db:
+  pgadmin:

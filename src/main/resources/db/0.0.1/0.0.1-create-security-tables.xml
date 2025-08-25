@@ -1,0 +1,95 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="1" author="yakimovich_sv">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="roles"/>
+            </not>
+        </preConditions>
+        <createTable tableName="roles" remarks="Таблица ролей">
+            <column name="id" type="bigint" remarks="ID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(20)" remarks="Имя">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <insert tableName="roles">
+            <column name="id" value="1"/>
+            <column name="name" value="ROLE_USER"/>
+        </insert>
+        <insert tableName="roles">
+            <column name="id" value="2"/>
+            <column name="name" value="ROLE_ADMIN"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="2" author="yakimovich_sv">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="users"/>
+            </not>
+        </preConditions>
+        <createTable tableName="users" remarks="Таблица пользователей">
+            <column name="id" type="bigint" remarks="ID" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)" remarks="Имя">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="code" type="varchar(20)" remarks="Код">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="email" type="varchar(50)" remarks="Email">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email_confirmed" type="boolean" remarks="Подтвержден ли email">
+                <constraints nullable="false"/>
+            </column>
+            <column name="mailing_forbidden" type="boolean" remarks="Запрещена ли рассылка по почте">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="varchar(255)" remarks="Пароль">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role_id" type="bigint" remarks="Роль">
+                <constraints nullable="false"
+                             foreignKeyName="fk_user_role" referencedTableName="roles" referencedColumnNames="id"/>
+            </column>
+            <column name="created_at" type="timestamp" remarks="Дата создания">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_login" type="timestamp" remarks="Дата последнего входа">
+            </column>
+            <column name="language" type="varchar(10)" remarks="Язык">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <insert tableName="users">
+            <column name="name" value="user"/>
+            <column name="code" value="1"/>
+            <column name="email" value="ysv0108@yandex.ru"/>
+            <column name="email_confirmed" value="true"/>
+            <column name="mailing_forbidden" value="true"/>
+            <column name="password" value="$2a$10$ZCa1DSfXyXaU9uFpOEqx7el94EnEwxeW1r.GY4gyVv1WmdmqjQatO"/>
+            <column name="role_id" value="1"/>
+            <column name="created_at" value="now()"/>
+            <column name="language" value="ANY"/>
+        </insert>
+        <insert tableName="users">
+            <column name="name" value="admin"/>
+            <column name="code" value="2"/>
+            <column name="email" value="ysv0108@yandex.ru"/>
+            <column name="email_confirmed" value="true"/>
+            <column name="mailing_forbidden" value="true"/>
+            <column name="password" value="$2a$10$t.xS1PG1F68gTRv7U9VU3.6HuyB1q.M05q5kLF9hvS/3ah3B/BjeK"/>
+            <column name="role_id" value="2"/>
+            <column name="created_at" value="now()"/>
+            <column name="language" value="ANY"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
