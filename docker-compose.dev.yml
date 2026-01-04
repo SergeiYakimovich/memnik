@@ -15,10 +15,8 @@ services:
       - MEMNIK_APPLICATION_URL= 109.172.114.118:8182
       - MEMNIK_DB_URL= jdbc:postgresql://localhost:25432/memnik_dev?currentSchema=memnik
       - SPRING_DATASOURCE_URL=jdbc:postgresql://service-db-dev/memnik_dev?currentSchema=memnik
-      - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=root
-#      - MEMNIK_TGBOT_TOKEN=
-#      - MEMNIK_TGBOT_URL=
+      - SPRING_DATASOURCE_USERNAME=${MEMNIK_DB_USER:}
+      - SPRING_DATASOURCE_PASSWORD=${MEMNIK_DB_PASS:}
     volumes:
       - storage-dev:/usr/app/storage
 
@@ -26,8 +24,8 @@ services:
     image: postgres:14.7-alpine
     container_name: service-db-dev
     environment:
-      - POSTGRES_USER=root
-      - POSTGRES_PASSWORD=root
+      - POSTGRES_USER=
+      - POSTGRES_PASSWORD=
     healthcheck:
       test: ["CMD-SHELL", "pg_isready", "-d", "books_db"]
       interval: 10s
@@ -45,8 +43,8 @@ services:
     image: dpage/pgadmin4:7
     restart: always
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@admin.com
-      PGADMIN_DEFAULT_PASSWORD: root
+      PGADMIN_DEFAULT_EMAIL:
+      PGADMIN_DEFAULT_PASSWORD:
     ports:
       - "5050:80"
     volumes:

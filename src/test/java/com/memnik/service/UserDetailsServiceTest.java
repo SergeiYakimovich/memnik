@@ -5,7 +5,7 @@ import com.memnik.dao.user.UserEntity;
 import com.memnik.dao.user.UserRepository;
 import com.memnik.dto.UserDto;
 import com.memnik.factory.UserFactory;
-import com.memnik.mapper.UserMapperImpl;
+import com.memnik.mapper.UserMapper;
 import com.memnik.service.common.MailService;
 import com.memnik.service.user.UserDetailsServiceImpl;
 import org.junit.jupiter.api.Test;
@@ -28,7 +28,7 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class UserDetailsServiceTest {
     @Mock
-    private UserMapperImpl userMapper;
+    private UserMapper userMapper;
     @Mock
     private UserRepository userRepository;
     @Mock
